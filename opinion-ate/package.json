@@ -43,7 +43,9 @@
     "arrowParens": "avoid",
     "bracketSpacing": true,
     "singleQuote": true,
-    "trailingComma": "all"
+    "trailingComma": "all",
+    "semi": false,
+    "eslintIntegration": true
   },
   "browserslist": {
     "production": [
