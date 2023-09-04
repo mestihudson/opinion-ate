@@ -17,9 +17,9 @@ jobs:
       working-directory: ./opinion-ate
       run: yarn test --watchAll=false
     - name: E2E Tests
-      working-directory: ./opinion-ate
       uses: cypress-io/github-action@v4
       with:
+        working-directory: ./opinion-ate
         start: yarn start
         wait-on: 'http://localhost:3000'
 
