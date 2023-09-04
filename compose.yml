@@ -12,3 +12,10 @@ services:
     ports:
     - 13000:3000
 
+  e2e:
+    image: cypress/included:10.9.0
+    volumes:
+    - .:/ws
+    working_dir: /ws/opinion-ate
+    entrypoint: bash -c "yarn install && yarn cypress; tail -f"
+
