@@ -11,8 +11,11 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.0"
   },
+  "homepage": "opinion-ate/",
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "cypress": "cypress run --browser chrome",
@@ -59,6 +62,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-cypress": "2.12.1",
     "eslint-plugin-prettier": "4.2.1",
+    "gh-pages": "^6.0.0",
     "prettier": "2.7.1"
   }
 }
