@@ -1,18 +1,18 @@
 name: Test
-  on: [push]
+on: [push]
 
 jobs:
   test:
-    name   : Test
+    name: Test
     runs-on: ubuntu-22.04
-    steps  :
+    steps:
     - uses: actions/checkout@v3
     - name: Install Dependencies
-      run : yarn install --frozen-lockfile
+      run: yarn install --frozen-lockfile
     - name: Lint
-      run : yarn lint
+      run: yarn lint
     - name: Unit Tests
-      run : yarn test --watchAll=false
+      run: yarn test --watchAll=false
     - name: E2E Tests
       uses: cypress-io/github-action@v4
       with:
