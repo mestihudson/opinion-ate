@@ -23,3 +23,19 @@ jobs:
         start: yarn start
         wait-on: 'http://localhost:3000'
 
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-22.04
+    needs: test
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Dependencies
+      working-directory: ./opinion-ate
+      run: yarn install --frozen-lockfile
+    - name: Deploy to environment
+      working-directory: ./opinion-ate
+      run: |
+        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        yarn deploy -u "github-actions-bot <support+actions@github.com>"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
