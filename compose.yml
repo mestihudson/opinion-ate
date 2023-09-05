@@ -17,7 +17,7 @@ services:
     volumes:
     - .:/ws
     working_dir: /ws/opinion-ate
-    entrypoint: bash -c "yarn install && yarn test --watchAll; tail -f"
+    entrypoint: bash -c "yarn install && yarn test:watch; tail -f"
 
   e2e:
     image: cypress/included:10.9.0

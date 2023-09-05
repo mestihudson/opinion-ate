@@ -18,6 +18,7 @@
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:watch": "yarn test --detectOpenHandles --watchAll",
     "cypress": "cypress run --browser chrome",
     "lint": "eslint src",
     "eject": "react-scripts eject"
