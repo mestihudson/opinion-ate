@@ -1,13 +1,15 @@
 import { useEffect } from 'react'
 
-export default function RestaurantList({ loadRestaurants }) {
+export default function RestaurantList({ loadRestaurants, restaurants }) {
   useEffect(() => {
     loadRestaurants()
   }, [loadRestaurants])
 
   return (
-    <div>
-      <h1>RestaurantList</h1>
-    </div>
+    <ul>
+      {restaurants.map((restaurant) => (
+        <li key={restaurant.id}>{restaurant.name}</li>
+      ))}
+    </ul>
   )
 }
