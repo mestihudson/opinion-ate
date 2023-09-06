@@ -12,6 +12,13 @@ services:
     ports:
     - 13000:3000
 
+  unit:
+    image: node:16.17.1
+    volumes:
+    - .:/ws
+    working_dir: /ws/opinion-ate
+    entrypoint: bash -c "yarn install && yarn test:watch; tail -f"
+
   e2e:
     image: cypress/included:10.9.0
     volumes:

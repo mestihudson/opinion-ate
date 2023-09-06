@@ -1,2 +1,4 @@
-opinion-ate/cypress/videos
+videos
+screenshots
 nohup.out
+.env
