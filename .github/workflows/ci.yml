@@ -5,6 +5,9 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-22.04
+    env:
+      REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+      REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
     steps:
     - uses: actions/checkout@v3
     - name: Install Dependencies
@@ -36,6 +39,10 @@ jobs:
       working-directory: ./opinion-ate
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        export CI=false
         yarn deploy -u "github-actions-bot <support+actions@github.com>"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+
