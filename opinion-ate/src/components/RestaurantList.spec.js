@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import RestaurantList from './RestaurantList'
+import { RestaurantList } from './RestaurantList'
 
 describe('<RestaurantList />', () => {
   const restaurants = [
