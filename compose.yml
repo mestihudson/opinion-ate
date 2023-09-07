@@ -28,3 +28,9 @@ services:
     environment:
       CYPRESS_BASE_URL: http://dev:3000
 
+  build:
+    image: node:16.17.1-bullseye-slim
+    volumes:
+    - .:/ws
+    working_dir: /ws/opinion-ate
+    entrypoint: bash -c "yarn install && yarn build; tail -f"
