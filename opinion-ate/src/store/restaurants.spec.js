@@ -37,6 +37,10 @@ describe('restaurants', () => {
       it('should fill the restaurants store state from api', () => {
         expect(store.getState().records).toEqual(records)
       })
+
+      it('should clear the loading flag', () => {
+        expect(store.getState().loading).toEqual(false)
+      })
     })
 
     describe('while loading', () => {
