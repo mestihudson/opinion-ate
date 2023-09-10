@@ -7,14 +7,14 @@ import { connect } from 'react-redux'
 
 import { loadRestaurants } from '../store/restaurants/actions'
 
-export function RestaurantList({ loadRestaurants, restaurants }) {
+export function RestaurantList({ loadRestaurants, restaurants, loading, }) {
   useEffect(() => {
     loadRestaurants()
   }, [loadRestaurants])
 
   return (
     <>
-      <CircularProgress />
+      { loading && <CircularProgress /> }
       <List>
         {restaurants.map((restaurant) => (
           <ListItem key={restaurant.id}>
