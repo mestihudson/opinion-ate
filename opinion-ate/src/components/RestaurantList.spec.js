@@ -27,22 +27,24 @@ describe('<RestaurantList />', () => {
     expect(loadRestaurants).toHaveBeenCalled()
   })
 
-  it('should display the restaurants', () => {
-    renderComponent()
-
-    expect(screen.getByText('Sushi Place')).toBeInTheDocument()
-    expect(screen.getByText('Pizza Place')).toBeInTheDocument()
-  })
-
   it('should display the loading indicator while loading', () => {
     renderComponent({ loading: true })
 
     expect(screen.getByRole('progressbar')).toBeInTheDocument()
   })
 
-  it('should not display the loading indicator while not loading', () => {
-    renderComponent({ loading: false })
+  describe('when loading succeeds', () => {
+    it('should display the restaurants', () => {
+      renderComponent()
 
-    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+      expect(screen.getByText('Sushi Place')).toBeInTheDocument()
+      expect(screen.getByText('Pizza Place')).toBeInTheDocument()
+    })
+
+    it('should not display the loading indicator while not loading', () => {
+      renderComponent({ loading: false })
+
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+    })
   })
 })
