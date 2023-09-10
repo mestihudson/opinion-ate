@@ -14,6 +14,7 @@ describe('<RestaurantList />', () => {
     const props = {
       loadRestaurants: jest.fn().mockName('loadRestaurants'),
       restaurants,
+      loading: false,
       ...propsOverrides,
     }
     loadRestaurants = props.loadRestaurants
@@ -42,7 +43,7 @@ describe('<RestaurantList />', () => {
     })
 
     it('should not display the loading indicator while not loading', () => {
-      renderComponent({ loading: false })
+      renderComponent()
 
       expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
     })
