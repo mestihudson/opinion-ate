@@ -39,4 +39,10 @@ describe('<RestaurantList />', () => {
 
     expect(screen.getByRole('progressbar')).toBeInTheDocument()
   })
+
+  it('should not display the loading indicator while not loading', () => {
+    renderComponent({ loading: false })
+
+    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+  })
 })
