@@ -7,12 +7,14 @@ import { loadRestaurants } from './restaurants/actions'
 describe('restaurants', () => {
   describe('loadRestaurants action', () => {
     describe('when loading succeeds', () => {
-      it('should fill the restaurants store state from api', async () => {
-        const records = [
-          { id: 1, name: 'Sushi Place' },
-          { id: 2, name: 'Pizza Place' },
-        ]
+      const records = [
+        { id: 1, name: 'Sushi Place' },
+        { id: 2, name: 'Pizza Place' },
+      ]
 
+      let store
+
+      beforeEach(() => {
         const api = {
           loadRestaurants: () => Promise.resolve(records),
         }
@@ -21,7 +23,7 @@ describe('restaurants', () => {
           records: []
         }
 
-        const store =  createStore(
+        store = createStore(
           restaurantsReducer,
           initialState,
           applyMiddleware(
@@ -29,8 +31,10 @@ describe('restaurants', () => {
           ),
         )
 
-        await store.dispatch(loadRestaurants())
+        return store.dispatch(loadRestaurants())
+      })
 
+      it('should fill the restaurants store state from api', () => {
         expect(store.getState().records).toEqual(records)
       })
     })
@@ -43,7 +47,7 @@ describe('restaurants', () => {
 
         const initialState = {}
 
-        const store =  createStore(
+        const store = createStore(
           restaurantsReducer,
           initialState,
           applyMiddleware(
