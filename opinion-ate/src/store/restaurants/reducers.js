@@ -11,6 +11,11 @@ function records(state = [], action) {
   }
 }
 
+function loading() {
+  return true
+}
+
 export default combineReducers({
   records,
+  loading,
 })
