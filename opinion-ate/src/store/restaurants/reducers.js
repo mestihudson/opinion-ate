@@ -22,7 +22,12 @@ function loading(state = false, action) {
   }
 }
 
+function loadError() {
+  return true
+}
+
 export default combineReducers({
   records,
   loading,
+  loadError,
 })
