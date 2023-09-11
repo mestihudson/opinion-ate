@@ -48,4 +48,12 @@ describe('<RestaurantList />', () => {
       expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
     })
   })
+
+  describe('when loading fails', () => {
+    it('should display the error message', () => {
+      renderComponent({ loadError: true })
+
+      expect(screen.getByText('Restaurants could not be loaded.')).toBeInTheDocument()
+    })
+  })
 })
