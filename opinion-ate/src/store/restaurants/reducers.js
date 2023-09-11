@@ -11,7 +11,7 @@ function records(state = [], action) {
   }
 }
 
-function loading(state = true, action) {
+function loading(state = false, action) {
   switch (action.type) {
     case STORE_RESTAURANTS:
       return false
