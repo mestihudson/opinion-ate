@@ -70,14 +70,16 @@ describe('restaurants', () => {
     })
 
     describe('while loading', () => {
-      it('should set a loading flag', () => {
+      let store
+
+      beforeEach(() => {
         const api = {
           loadRestaurants: () => new Promise(() => {}),
         }
 
         const initialState = {}
 
-        const store = createStore(
+        store = createStore(
           restaurantsReducer,
           initialState,
           applyMiddleware(
@@ -86,7 +88,9 @@ describe('restaurants', () => {
         )
 
         store.dispatch(loadRestaurants())
+      })
 
+      it('should set a loading flag', () => {
         expect(store.getState().loading).toEqual(true)
       })
     })
