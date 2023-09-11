@@ -10,15 +10,16 @@ describe('<RestaurantList />', () => {
 
   let loadRestaurants
 
-  function renderComponent() {
-    loadRestaurants = jest.fn().mockName('loadRestaurants')
+  function renderComponent(propsOverrides = {}) {
+    const props = {
+      loadRestaurants: jest.fn().mockName('loadRestaurants'),
+      restaurants,
+      loading: false,
+      ...propsOverrides,
+    }
+    loadRestaurants = props.loadRestaurants
 
-    render(
-      <RestaurantList
-        loadRestaurants={loadRestaurants}
-        restaurants={restaurants}
-      />
-    )
+    render(<RestaurantList { ...props } />)
   }
 
   it('should load restaurants on first render', () => {
@@ -27,10 +28,39 @@ describe('<RestaurantList />', () => {
     expect(loadRestaurants).toHaveBeenCalled()
   })
 
-  it('should display the restaurants', () => {
-    renderComponent()
+  it('should display the loading indicator while loading', () => {
+    renderComponent({ loading: true })
 
-    expect(screen.getByText('Sushi Place')).toBeInTheDocument()
-    expect(screen.getByText('Pizza Place')).toBeInTheDocument()
+    expect(screen.getByRole('progressbar')).toBeInTheDocument()
+  })
+
+  describe('when loading succeeds', () => {
+    it('should display the restaurants', () => {
+      renderComponent()
+
+      expect(screen.getByText('Sushi Place')).toBeInTheDocument()
+      expect(screen.getByText('Pizza Place')).toBeInTheDocument()
+    })
+
+    it('should not display the loading indicator while not loading', () => {
+      renderComponent()
+
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+    })
+
+    it('should not display the error message', () => {
+      renderComponent()
+
+      expect(screen.queryByText('Restaurants could not be loaded.'))
+        .not.toBeInTheDocument()
+    })
+  })
+
+  describe('when loading fails', () => {
+    it('should display the error message', () => {
+      renderComponent({ loadError: true })
+
+      expect(screen.getByText('Restaurants could not be loaded.')).toBeInTheDocument()
+    })
   })
 })
