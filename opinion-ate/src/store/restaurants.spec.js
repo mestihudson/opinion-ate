@@ -93,15 +93,19 @@ describe('restaurants', () => {
   })
 
   describe('initially', () => {
-    it('should not have the loading flag set', () => {
+    let store
+
+    beforeEach(() => {
       const initialState = {}
 
-      const store = createStore(
+      store = createStore(
         restaurantsReducer,
         initialState,
         applyMiddleware(thunk),
       )
+    })
 
+    it('should not have the loading flag set', () => {
       expect(store.getState().loading).toEqual(false)
     })
   })
