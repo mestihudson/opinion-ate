@@ -65,4 +65,18 @@ describe('restaurants', () => {
       })
     })
   })
+
+  describe('initially', () => {
+    it('should not have the loading flag set', () => {
+      const initialState = {}
+
+      const store = createStore(
+        restaurantsReducer,
+        initialState,
+        applyMiddleware(thunk),
+      )
+
+      expect(store.getState().loading).toEqual(false)
+    })
+  })
 })
