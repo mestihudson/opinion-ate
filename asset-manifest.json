@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/opinion-ate/static/js/main.65aafd11.js",
+    "main.js": "/opinion-ate/static/js/main.14ec1f8c.js",
     "index.html": "/opinion-ate/index.html",
-    "main.65aafd11.js.map": "/opinion-ate/static/js/main.65aafd11.js.map"
+    "main.14ec1f8c.js.map": "/opinion-ate/static/js/main.14ec1f8c.js.map"
   },
   "entrypoints": [
-    "static/js/main.65aafd11.js"
+    "static/js/main.14ec1f8c.js"
   ]
 }
