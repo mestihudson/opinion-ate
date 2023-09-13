@@ -5,6 +5,7 @@ import { NewRestaurantForm } from './NewRestaurantForm'
 
 describe('<NewRestaurantForm />', () => {
   const restaurantName = 'Sushi Place'
+  const requiredError = 'Name is required'
   let user
   let createRestaurant
 
@@ -46,7 +47,7 @@ describe('<NewRestaurantForm />', () => {
     it('should display a validation error', async () => {
       await submitEmptyForm()
 
-      expect(screen.getByText('Name is required')).toBeInTheDocument()
+      expect(screen.getByText(requiredError)).toBeInTheDocument()
     })
   })
 })
