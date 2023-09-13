@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
 import {
+  ADD_RESTAURANT,
   RECORD_LOADING_ERROR,
   START_LOADING,
   STORE_RESTAURANTS,
@@ -10,6 +11,8 @@ function records(state = [], action) {
   switch (action.type) {
     case STORE_RESTAURANTS:
       return action.records
+    case ADD_RESTAURANT:
+      return [ ...state, action.record ]
     default:
       return state
   }
