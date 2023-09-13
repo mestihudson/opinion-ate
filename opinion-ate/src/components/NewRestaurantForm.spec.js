@@ -62,6 +62,12 @@ describe('<NewRestaurantForm />', () => {
 
       expect(screen.getByText(requiredError)).toBeInTheDocument()
     })
+
+    it('should not call createRestaurant', async () => {
+      await submitEmptyForm()
+
+      expect(createRestaurant).not.toHaveBeenCalled()
+    })
   })
 
   describe('when correcting a validation error', () => {
