@@ -35,4 +35,18 @@ describe('<NewRestaurantForm />', () => {
       expect(screen.getByPlaceholderText('Add Restaurant')).toHaveValue('')
     })
   })
+
+  describe('when empty', () => {
+    async function submitEmptyForm() {
+      renderComponent()
+
+      await user.click(screen.getByText('Add'))
+    }
+
+    it('should display a validation error', async () => {
+      await submitEmptyForm()
+
+      expect(screen.getByText('Name is required')).toBeInTheDocument()
+    })
+  })
 })
