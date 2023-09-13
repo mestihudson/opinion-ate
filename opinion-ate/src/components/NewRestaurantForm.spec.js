@@ -63,4 +63,25 @@ describe('<NewRestaurantForm />', () => {
       expect(screen.getByText(requiredError)).toBeInTheDocument()
     })
   })
+
+  describe('when correcting a validation error', () => {
+    async function fixValidationError() {
+      renderComponent()
+      createRestaurant.mockResolvedValue()
+
+      await user.click(screen.getByText('Add'))
+
+      await user.type(
+        screen.getByPlaceholderText('Add Restaurant'),
+        restaurantName,
+      )
+      await user.click(screen.getByText('Add'))
+    }
+
+    it('should clear the validation error', async () => {
+      await fixValidationError()
+
+      expect(screen.queryByText(requiredError)).not.toBeInTheDocument()
+    })
+  })
 })
