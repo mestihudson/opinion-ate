@@ -14,10 +14,10 @@ export function NewRestaurantForm({ createRestaurant }) {
     e.preventDefault()
     if (name) {
       setValidationError(false)
+      await createRestaurant(name)
     } else {
       setValidationError(true)
     }
-    await createRestaurant(name)
     setName('')
   }
 
