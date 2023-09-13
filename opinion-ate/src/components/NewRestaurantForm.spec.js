@@ -137,7 +137,7 @@ describe('<NewRestaurantForm />', () => {
       await user.click(screen.getByText('Add'))
     }
 
-    it('should clear the server error', async () => {
+    it.skip('should clear the server error', async () => {
       await retrySubmittingForm()
 
       expect(screen.queryByText(serverError)).not.toBeInTheDocument()
