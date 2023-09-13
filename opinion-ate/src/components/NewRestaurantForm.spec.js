@@ -23,6 +23,12 @@ describe('<NewRestaurantForm />', () => {
 
       expect(screen.queryByText(requiredError)).not.toBeInTheDocument()
     })
+
+    it('should display a server error', async () => {
+      renderComponent()
+
+      expect(screen.queryByText(serverError)).not.toBeInTheDocument()
+    })
   })
 
   describe('when filled in', () => {
