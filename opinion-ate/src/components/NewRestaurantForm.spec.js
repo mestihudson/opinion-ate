@@ -120,5 +120,27 @@ describe('<NewRestaurantForm />', () => {
 
       expect(screen.getByText(serverError)).toBeInTheDocument()
     })
+
+  describe('when retrying after the store action rejects', () => {
+    async function retrySubmittingForm() {
+      renderComponent()
+      createRestaurant
+        .mockRejectedValueOnce()
+        .mockResolvedValueOnce()
+
+      await user.type(
+        screen.getByPlaceholderText('Add Restaurant'),
+        restaurantName,
+      )
+      await user.click(screen.getByText('Add'))
+
+      await user.click(screen.getByText('Add'))
+    }
+
+    it('should clear the server error', async () => {
+      await retrySubmittingForm()
+
+      expect(screen.queryByText(serverError)).not.toBeInTheDocument()
+    })
   })
 })
