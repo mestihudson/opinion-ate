@@ -106,6 +106,8 @@ describe('restaurants', () => {
 
   describe('createRestaurant action', () => {
     const newRestaurantName = 'Sushi Place'
+    const existingRestaurant = { id: 1, name: 'Pizza Place' }
+    const responseRestaurant = { id: 2, name: newRestaurantName }
 
     let api
     let store
@@ -115,7 +117,7 @@ describe('restaurants', () => {
         createRestaurant: jest.fn().mockName('createRestaurant')
       }
 
-      const initialState = {}
+      const initialState = { records: [existingRestaurant] }
 
       store = createStore(
         restaurantsReducer,
