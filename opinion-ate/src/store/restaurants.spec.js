@@ -133,6 +133,21 @@ describe('restaurants', () => {
 
       expect(api.createRestaurant).toHaveBeenCalledWith(newRestaurantName)
     })
+
+    describe('when save succeeds', () => {
+      beforeEach(() => {
+        api.createRestaurant.mockResolvedValue(responseRestaurant)
+
+        return store.dispatch(createRestaurant(newRestaurantName))
+      })
+
+      it('should store the returned restaurant in the store', () => {
+        expect(store.getState().records).toEqual([
+          existingRestaurant,
+          responseRestaurant,
+        ])
+      })
+    })
   })
 
   describe('initially', () => {
