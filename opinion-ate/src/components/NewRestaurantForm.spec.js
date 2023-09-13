@@ -29,5 +29,10 @@ describe('<NewRestaurantForm />', () => {
       await fillInForm()
       expect(createRestaurant).toHaveBeenCalledWith(restaurantName)
     })
+
+    it('should clear the name', async () => {
+      await fillInForm()
+      expect(screen.getByPlaceholderText('Add Restaurant')).toHaveValue('')
+    })
   })
 })
