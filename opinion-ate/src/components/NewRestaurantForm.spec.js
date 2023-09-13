@@ -121,6 +121,13 @@ describe('<NewRestaurantForm />', () => {
       expect(screen.getByText(serverError)).toBeInTheDocument()
     })
 
+    it('should not clear the name', async () => {
+      await fillInForm()
+      expect(screen.getByPlaceholderText('Add Restaurant'))
+        .toHaveValue(restaurantName)
+    })
+  })
+
   describe('when retrying after the store action rejects', () => {
     async function retrySubmittingForm() {
       renderComponent()
